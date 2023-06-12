@@ -98,7 +98,7 @@ async function vlessOverWSHandler(request) {
 			const {
 				hasError,
 				message,
-				portRemote = 443,
+				portRemote = 80,
 				addressRemote = '',
 				rawDataIndex,
 				vlessVersion = new Uint8Array([0, 0]),
@@ -571,7 +571,7 @@ async function handleDNSQuery(udpChunk, webSocket, vlessResponseHeader, log) {
  * @returns {string}
  */
 function getVLESSConfig(userID, hostName) {
-	const vlessMain = `vless://${userID}@${hostName}:443?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`
+	const vlessMain = `vless://${userID}@${hostName}:80?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`
 	return `
 ################################################################
 v2ray
@@ -584,7 +584,7 @@ clash-meta
 - type: vless
   name: ${hostName}
   server: ${hostName}
-  port: 443
+  port: 80
   uuid: ${userID}
   network: ws
   tls: true
